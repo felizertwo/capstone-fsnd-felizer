@@ -928,8 +928,7 @@
 	"variable": [
 		{
 			"key": "host",
-			"value": "localhost:5000",
-			"type": "string"
+			"value": "capstone-fsnd-felizer.herokuapp.com"
 		}
 	]
 }
