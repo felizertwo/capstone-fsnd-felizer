@@ -1,0 +1,935 @@
+{
+	"info": {
+		"_postman_id": "dbdac4d6-943e-4861-8fe7-7b40cfb14b5c",
+		"name": "capstone - code review",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "manager",
+			"item": [
+				{
+					"name": "clear all db",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/clearAll",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"clearAll"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"fwer3f\",\n    \"email\": \"es@s.com\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains reviewers array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.Reviewers).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 406\", function () {",
+									"    pm.response.to.have.status(406);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"new name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/reviewers/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"awesfefome project\",\n    \"category\": \"ios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sawesomesss project\",\n    \"category\": \"ios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/projects/3",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reviewer_id\": 1,\n    \"project_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/assignment",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignment",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reviewer_id\": 1,\n    \"project_id\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/assignments",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"assignments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/reviewers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"awesome project\",\n    \"category\": \"ios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/projects/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assignment",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reviewer_id\": 1,\n    \"project_id\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/assignments/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"assignments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"awesfefome project\",\n    \"category\": \"ios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewer Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"fwer3f\",\n    \"email\": \"es@s.com\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IldCb3ZxS3JEQy1WUHgta2lGX2JLZiJ9.eyJpc3MiOiJodHRwczovL2FkczR1LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MTE5NzIzM2Y0Y2U2ODAwNzFkMTk4ZTgiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTYyOTcyNzkxNCwiZXhwIjoxNjI5ODE0MzE0LCJhenAiOiJ4S3lMRW5sdVpLcTdiTTNJMjI2R0tqMzdlZjVyWHhrOCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnByb2plY3QiLCJkZWxldGU6cHJvamVjdHMiLCJkZWxldGU6cmV2aWV3ZXIiLCJkZWxldGU6cmV2aWV3ZXJzIiwiZ2V0OnByb2plY3QiLCJnZXQ6cHJvamVjdHMiLCJnZXQ6cmV2aWV3ZXIiLCJnZXQ6cmV2aWV3ZXJzIiwicGF0Y2g6cHJvamVjdCIsInBhdGNoOnByb2plY3RzIiwicGF0Y2g6IHJldmlld2VyIiwicGF0Y2g6cmV2aWV3ZXJzIiwicG9zdDpwcm9qZWN0IiwicG9zdDpwcm9qZWN0cyIsInBvc3Q6cmV2aWV3ZXIiLCJwb3N0OnJldmlld2VycyJdfQ.ygg7XTPTYrKnfyPdphD9pHI5CQCumKvVEPFKY6lvDGXch27ahmTjZMxG2nZHiO7ZupJ7GR8-ID56z05_HvrZ-M-dAu36P8dHIn3p0HaDwfu-vIIAz2F0EY8SdzSIdTgJLuHOuKYQi7kUXWN2_WM7fcSgkgLEOPOXyrqr0IzuhJl0rY5HNJSjh92mhdi7ZR-D1Kn-ClkqHg1zy-hbNbB4I8rwne7oZTTrBHpJOKPleeiVbElSfePxPmWmfv9Hr94g4K4QUvQJiLs5sE_0xhqnlc7U0SZsGJH6Bn9fzq4ZFXU0YuVhfP3FVIKkhwkCyH0uFSBMP8rajuKvT9PN4DjwUg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Sales",
+			"item": [
+				{
+					"name": "/reviewers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains Reviewers array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.Reviewers).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/projects",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"hassass\",\n    \"email\": \"es@s.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"new name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/reviewers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {",
+									"    pm.response.to.have.status(403);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/reviewers/1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IldCb3ZxS3JEQy1WUHgta2lGX2JLZiJ9.eyJpc3MiOiJodHRwczovL2FkczR1LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MTE5NzE0ZmM3ZmFiMDAwNmFlYTFjY2EiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTYyOTcyODcxMSwiZXhwIjoxNjI5ODE1MTExLCJhenAiOiJ4S3lMRW5sdVpLcTdiTTNJMjI2R0tqMzdlZjVyWHhrOCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZ2V0OnByb2plY3QiLCJnZXQ6cHJvamVjdHMiLCJnZXQ6cmV2aWV3ZXIiLCJnZXQ6cmV2aWV3ZXJzIl19.d1Mw8UUX-I3yb5sGEUE7pxbaeQllo7CkDrlCsMHaT9AtRb3DSxqtNqr9YjPje6Is01xFDbX3smMBTtrCGJ_m8vHyOt8idqmOvVLLNs3EqrmI4jewKjNHZ9-Kmvdhp2ijOq2iBUgWKLYr0U_lmEKG34vgtmN6Ik-xG_nTpQQR9y1ZLQkLeyuvBnD6w9TvlHzOrbtIfddjSvR3kw-4Jxc-vsF2wYkoH6L-lLCzoacjc2HK3ixiP6YjsCZ5YS2OHqh2fYif4LdVSKA2LqFG3f30Wp7pPyJ5fzXzUckgFmkJIg9uwnaUAzxQDaRbZf0lV2TODTVRLXcnAXrrT6J_5e90Tw",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Supervisor",
+			"item": [
+				{
+					"name": "/reviewer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"hassaswws\",\n    \"email\": \"es@s.com\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"value contains Reviewers array\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.Reviewers).to.be.an('array')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/reviewers",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"new name\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/reviewers/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/projects/2",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"sawesomesss project\",\n    \"category\": \"ios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/projects/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"projects",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/reviewers/1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/reviewers/2",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"reviewers",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IldCb3ZxS3JEQy1WUHgta2lGX2JLZiJ9.eyJpc3MiOiJodHRwczovL2FkczR1LmV1LmF1dGgwLmNvbS8iLCJzdWIiOiJhdXRoMHw2MTE5NzI1YmM3ZmFiMDAwNmFlYTFkMDkiLCJhdWQiOiJjYXBzdG9uZSIsImlhdCI6MTYyOTcyOTA1NywiZXhwIjoxNjI5ODE1NDU3LCJhenAiOiJ4S3lMRW5sdVpLcTdiTTNJMjI2R0tqMzdlZjVyWHhrOCIsInNjb3BlIjoiIiwicGVybWlzc2lvbnMiOlsiZGVsZXRlOnByb2plY3QiLCJkZWxldGU6cHJvamVjdHMiLCJkZWxldGU6cmV2aWV3ZXIiLCJkZWxldGU6cmV2aWV3ZXJzIiwiZ2V0OnByb2plY3QiLCJnZXQ6cHJvamVjdHMiLCJnZXQ6cmV2aWV3ZXIiLCJnZXQ6cmV2aWV3ZXJzIiwicGF0Y2g6cHJvamVjdCIsInBhdGNoOnByb2plY3RzIiwicGF0Y2g6IHJldmlld2VyIiwicGF0Y2g6cmV2aWV3ZXJzIiwicG9zdDpwcm9qZWN0IiwicG9zdDpwcm9qZWN0cyIsInBvc3Q6cmV2aWV3ZXIiLCJwb3N0OnJldmlld2VycyJdfQ.KHXWb9sRb0qtcbNn3pv-s6FGplIC-s6TB7jcP3JcEW0JnaJyGDcwHpMA1B8InzA8Hyra7yGMzUuVIu-i2rAJ4nl9pOE8N6wppvxUJIYYfjOhOAyaidViKcex_MG05KCXkLm4WWvNpcV-J2GobUZvw3NSphYe0USWigV5puGs4rezvw2iROF03y3NEuclfZluxZs32WThvYHsqnXmkdx3BTpWZfplOzmumyt4mGwHdZpsVgl6QRxFKfc_86c1bL6cxoqWdf0CnbbJpFDwK9JtzT86DQ0y-Uff9hziR9_S9xglNltPapHcpcYS0iFP2K36jUdl9sUsCuUB1mtwssG1Zg",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "get token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Cookie",
+						"value": "did=s%3Av0%3Aca448f60-6c6c-11ea-9b44-2f00ec3e5ae7.Y%2Br2QvMFBlADgUjOEyIKDxp4rzRwrumzqkCqgb%2BlxvU; did_compat=s%3Av0%3Aca448f60-6c6c-11ea-9b44-2f00ec3e5ae7.Y%2Br2QvMFBlADgUjOEyIKDxp4rzRwrumzqkCqgb%2BlxvU; auth0=s%3AIvPi3zIu0silHp9vbC5MJb8TPOZoXgrx.9BRI79%2FMSii%2B8%2BJw8K6E5b%2FDhS0Tj5Vdvpbgl5nq7Qk; auth0_compat=s%3AIvPi3zIu0silHp9vbC5MJb8TPOZoXgrx.9BRI79%2FMSii%2B8%2BJw8K6E5b%2FDhS0Tj5Vdvpbgl5nq7Qk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"client_id\": \"xKyLEnluZKq7bM3I226GKj37ef5rXxk8\",\n  \"grant_type\": \"client_credentials\",\n  \"client_secret\": \"eNulUQsKkHkPZ4n8dc8SdPr7usBAY7YzpMzQxzsL0Go0hsjxjdYzvL8AlP4dMp4T\",\n  \"audience\": \"capstone\"\n}"
+				},
+				"url": {
+					"raw": "https://ads4u.eu.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"ads4u",
+						"eu",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}
